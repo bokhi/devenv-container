@@ -11,13 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@main
-    - uses: cachix/install-nix-action@main
+    - uses: actions/checkout@v4
+    - uses: cachix/install-nix-action@v24
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: cachix/cachix-action@main
+    - uses: cachix/cachix-action@v12
       with:
-        name: devenv
+        name: bokhi
+        extraPullNames: devenv
     - name: Install devenv.sh
       run: nix profile install tarball+https://install.devenv.sh/latest
     - name: Build the devenv shell and run any pre-commit hooks
